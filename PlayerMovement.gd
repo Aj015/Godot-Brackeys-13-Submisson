@@ -5,6 +5,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
+@onready var anim_play_neck := $Neck/Camera3D/AnimationPlayer
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -37,3 +38,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+	if direction != Vector3():
+		anim_play_neck.play("Head Bob")
